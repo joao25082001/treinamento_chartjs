@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>atividade</title>
+
+    <link rel="stylesheet" href="css_chart.css" />
+
+    <!-- Da acesso a lib através do cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="container">
+        <h1><span class="highlight">graficos</span></h1>
+      </div>
+    </div>
+    <div class="dash">
+        <!-- Farol de temperatura -->
+       
+        <div class="graph">
+            <div class="box yellow">
+                <h3>salario atual</h3>
+                <h3>R$1100,00</h3>
+                <p>Aumento de mais de 100% em comparação a 2011 </p>
+
+                
+              </div>
+          <div class="box green">
+            <h3>média de salario regional</h3>
+            <h3> lider: suldeste </h3>
+            <p>salario: 2585,00</p>
+          </div>
+          
+          <div class="box red">
+            <h3>desemprego</h3>
+            <h3>lider: nordeste</h3>
+            <p>nordeste está com a maior taxa de desemprego</p>
+          </div>
+        </div>
+
+  
+      <!-- Gráficos -->
+      <div  class="graph">
+        <canvas id="linha" style="width: 100%; height: 100%"></canvas>
+      </div>
+
+      <div class="graph">
+        <canvas id="barra" style="width: 100%; height: 100%"></canvas>
+      </div>
+
+      <div class="graph">
+        <canvas id="barra2" style="width: 100%; height: 100%"></canvas>
+
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script> 
+  // Inicia uma variável do tipo constante (não pode ser reatribuida)
+  const config = { 
+    type: "line", // tipo do gráfico
+    data: { // objeto que vai conter os dados do gráfico
+      labels: [   540 , 622.00, 678.00,724.00,788.00,880.00,937.00,954.00,998.00,1045.00,1100.00
+    ],
+     // labels (rótulos) que serão identificados os nossos dados 
+      datasets: [ // datasets (conjunto de dados)
+        {
+          label: "aumento de salario durante os anos", // irá conter o rótulo principal do nosso gráfico
+          data: [ "2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021" ],
+         // os dados referentes aqueles rótulos
+          borderwidth:6,
+          backgroundColor: "white", // cor das "bolinhas" do gráfico
+          borderColor: "aquamarine", // cor da "linha" do gráfico
+            
+        }, 
+    ],
+   
+     
+   
+    //    ["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],540.00, 622.00, 678.00,724.00,788.00,880.00,937.00,954.00,998.00,1045.00,1100.00]//
+      
+      
+    },
+    options: {
+      maintainAspectRatio: true
+      /* maintainAspectRatio (manter relação de aspecto) 
+        caso true: ele "obdece" a altura e largura que colocamos
+        caso false: ele não "obdece" a altura e largura que colocamos e se ajusta ao componente pai
+      */
+    },
+    
+  
+  }
+
+
+  var myChartLine = new Chart(document.getElementById("linha"), config); 
+  const grafico2 = {
+        type: 'bar',
+        data: {
+            datasets: [{
+
+                label: 'média de salario por região',
+                data: [1771.00, 1539.00, 2585.00, 2499.00, 2498.00],
+                backgroundColor: [
+                    'yellow',
+                    'red',
+                    'green',
+                    'aquamarine',
+                    'aquamarine'],
+                // this dataset is drawn on top
+                order: 1
+            }],
+            labels: ['norte', 'nordeste', 'suldeste', 'sul', 'centro-oeste'],
+
+
+
+
+
+            //    ["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],540.00, 622.00, 678.00,724.00,788.00,880.00,937.00,954.00,998.00,1045.00,1100.00]//
+
+
+        },
+        options: {
+            maintainAspectRatio: true
+            /* maintainAspectRatio (manter relação de aspecto) 
+              caso true: ele "obdece" a altura e largura que colocamos
+              caso false: ele não "obdece" a altura e largura que colocamos e se ajusta ao componente pai
+            */
+        },
+
+
+    }
+  var myChartbar = new Chart(document.getElementById("barra"), grafico2); 
+  
+
+  
+  /* aqui obrigatoriamente tem que colocar new Chart() para criar um novo chart 
+  e passar dentro dos (parênteses) o elemento canvas que você quer mandar e 
+  separado pela virgula o que você quer mandar, no nosso caso a config que fizemos 
+
+  */
+  const grafico3 = { 
+    type: 'bar',
+   data: {
+       datasets: [{
+           
+           label: 'porcentagem desemprego por regiao região e a totalidade brasileira (0 a 100)',
+           data: [10.6,13.6,11.4,6.8,9.3,11],     
+           backgroundColor: [
+      'blue',
+      'red',
+      'yellow',
+      'green',
+      'aquamarine',
+       'orange'],      
+           // this dataset is drawn on top
+           order: 1
+       }],
+       labels: ['norte', 'nordeste', 'suldeste', 'sul','centro-oeste','brasil'],
+      
+
+   
+     
+   
+    //    ["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],540.00, 622.00, 678.00,724.00,788.00,880.00,937.00,954.00,998.00,1045.00,1100.00]//
+      
+      
+    },
+    options: {
+      maintainAspectRatio: true
+      /* maintainAspectRatio (manter relação de aspecto) 
+        caso true: ele "obdece" a altura e largura que colocamos
+        caso false: ele não "obdece" a altura e largura que colocamos e se ajusta ao componente pai
+      */
+    },
+    
+  
+  }
+
+  var myChartbar = new Chart(document.getElementById("barra2"), grafico3); 
+  
+</script>
